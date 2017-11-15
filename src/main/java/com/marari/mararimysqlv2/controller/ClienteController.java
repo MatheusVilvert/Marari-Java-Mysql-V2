@@ -30,6 +30,9 @@ public class ClienteController {
     @GetMapping("cliente/parametro")
     public List<Cliente> buscarPorParametro(@Param("parametro") String parametro){return clienteService.buscarPorParametro(parametro);}
 
+    @GetMapping("cliente/count")
+    public List<?> teste(){return clienteService.teste();}
+
     @DeleteMapping("cliente/{id}")
     public void excluir(@PathVariable("id")Integer id){
         Cliente cliente = new Cliente();

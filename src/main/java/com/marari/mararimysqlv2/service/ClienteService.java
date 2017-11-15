@@ -32,6 +32,8 @@ public class ClienteService {
 
     public List<Cliente> buscarPorParametro(String parametro){return clienteRepository.buscarPorParametro('%'+parametro+'%');}
 
+    public List<?> teste(){return clienteRepository.teste();}
+
     public void excluir(Cliente cliente){clienteRepository.delete(cliente);}
 
     public void editar(Cliente cliente){
