@@ -32,6 +32,9 @@ public class UsuarioController
     @GetMapping("/usuario/nome")
     public List<Usuario> buscarPorNome(@RequestParam("nome")String nome){return usuarioService.buscarPorNome(nome);}
 
+    @GetMapping("/usuario/vendedor")
+    public List<Usuario> buscaVendedor(){return usuarioService.buscaVendedor();}
+
     @DeleteMapping("/usuario/{id}")
     public void excluir(@PathVariable("id")Integer id){
         Usuario usuario = new Usuario();

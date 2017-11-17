@@ -5,6 +5,7 @@ import com.marari.mararimysqlv2.service.ClienteService;
 import com.marari.mararimysqlv2.service.EnderecoService;
 import com.marari.mararimysqlv2.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +32,14 @@ public class RelatorioController {
         return mv;
     }
 
-    @GetMapping("teste2")
-    public List<?> teste2(){
-        return clienteService.teste();
+    @GetMapping("relatorio/listaCliente")
+    public ModelAndView listaDeCliente(@Param("nome")String nome){
+        ModelAndView mv = new ModelAndView("listaDeClientes");
+        if (nome.equals("")){
+            mv.addObject("clientes",clienteService.buscarTodos());
+        }else {
+            mv.addObject("clientes",clienteService.buscarPorNome(nome));
+        }
+        return mv;
     }
 }

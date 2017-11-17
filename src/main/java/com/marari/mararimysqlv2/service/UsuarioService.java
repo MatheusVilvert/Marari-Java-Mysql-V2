@@ -55,6 +55,8 @@ public class UsuarioService {
 
     public List<Usuario> buscarTodos(){return usuarioRepository.findAll();}
 
+    public List<Usuario> buscaVendedor(){return usuarioRepository.buscaVendedor();}
+
     public Usuario buscarPorEmail(String email){return usuarioRepository.findByEmail(email);}
 
     public Usuario buscarPorSenha(String senha){return usuarioRepository.findBySenha(senha);}

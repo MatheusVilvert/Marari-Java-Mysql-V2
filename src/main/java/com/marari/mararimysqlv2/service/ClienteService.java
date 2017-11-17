@@ -30,6 +30,8 @@ public class ClienteService {
 
     public List<Cliente> buscarTodos(){return clienteRepository.findAll();}
 
+    public List<Cliente> buscarPorNome(String nome){return clienteRepository.findByNome(nome);}
+
     public List<Cliente> buscarPorParametro(String parametro){return clienteRepository.buscarPorParametro('%'+parametro+'%');}
 
     public List<?> teste(){return clienteRepository.teste();}

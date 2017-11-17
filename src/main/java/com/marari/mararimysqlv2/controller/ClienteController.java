@@ -30,6 +30,9 @@ public class ClienteController {
     @GetMapping("cliente/parametro")
     public List<Cliente> buscarPorParametro(@Param("parametro") String parametro){return clienteService.buscarPorParametro(parametro);}
 
+    @GetMapping("cliente/nome")
+    public List<Cliente> buscarPorNome(@Param("nome")String nome){return clienteService.buscarPorNome(nome);}
+
     @GetMapping("cliente/count")
     public List<?> teste(){return clienteService.teste();}
 
