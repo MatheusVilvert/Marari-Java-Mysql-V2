@@ -33,9 +33,6 @@ public class ClienteController {
     @GetMapping("cliente/nome")
     public List<Cliente> buscarPorNome(@Param("nome")String nome){return clienteService.buscarPorNome(nome);}
 
-    @GetMapping("cliente/count")
-    public List<?> teste(){return clienteService.teste();}
-
     @DeleteMapping("cliente/{id}")
     public void excluir(@PathVariable("id")Integer id){
         Cliente cliente = new Cliente();

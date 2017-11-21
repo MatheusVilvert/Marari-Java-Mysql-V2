@@ -18,14 +18,8 @@ public class ClienteService {
     private EnderecoRepository enderecoRepository;
 
     public Cliente salvar(Cliente cliente){
-        if (cliente.getEndereco().getId() == null){
-            enderecoRepository.save(cliente.getEndereco());
-        }else {
-            Endereco endereco = enderecoRepository.findOne(cliente.getEndereco().getId());
-            cliente.setEndereco(endereco);
-        }
+        enderecoRepository.save(cliente.getEndereco());
         return clienteRepository.save(cliente);
-
     }
 
     public List<Cliente> buscarTodos(){return clienteRepository.findAll();}
@@ -33,8 +27,6 @@ public class ClienteService {
     public List<Cliente> buscarPorNome(String nome){return clienteRepository.findByNome(nome);}
 
     public List<Cliente> buscarPorParametro(String parametro){return clienteRepository.buscarPorParametro('%'+parametro+'%');}
-
-    public List<?> teste(){return clienteRepository.teste();}
 
     public void excluir(Cliente cliente){clienteRepository.delete(cliente);}
 

@@ -19,8 +19,9 @@ public class Cliente {
     private String rg;
     private String telefone;
     private String info;
+    private String regiao;
 
-    public Cliente(String nome, String email, Endereco endereco, String cpfCnpj, String rg, String telefone, String info) {
+    public Cliente(String nome, String email, Endereco endereco, String cpfCnpj, String rg, String telefone, String info,String regiao) {
         this.nome = nome;
         this.email = email;
         this.endereco = endereco;
@@ -28,6 +29,7 @@ public class Cliente {
         this.rg = rg;
         this.telefone = telefone;
         this.info = info;
+        this.regiao = regiao;
     }
 
     public Cliente() {
