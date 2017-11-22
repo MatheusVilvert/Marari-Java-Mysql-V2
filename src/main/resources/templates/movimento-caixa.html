@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Movimento do Caixa</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Movimento do Caixa</h1>
+<table class="table table-sm table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>Data Recebimento</th>
+        <th>Forma Pagamento</th>
+        <th>Vendedor</th>
+        <th>Recb/Entrada</th>
+        <th>Pago/Saída</th>
+        <th>Saldo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente : ${clientes}">
+        <td th:utext="${cliente.nome +'&lt;br /&gt;'+cliente.endereco.rua}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

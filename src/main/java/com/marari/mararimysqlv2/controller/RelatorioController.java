@@ -34,7 +34,7 @@ public class RelatorioController {
 
     @GetMapping("relatorio/listaCliente")
     public ModelAndView listaDeCliente(@Param("nome")String nome){
-        ModelAndView mv = new ModelAndView("listaDeClientes");
+        ModelAndView mv = new ModelAndView("lista-clientes");
         if (nome.equals("")){
             mv.addObject("clientes",clienteService.buscarTodos());
         }else {

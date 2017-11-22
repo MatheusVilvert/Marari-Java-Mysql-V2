@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Posição de Estoque</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Posição de Estoque</h1>
+<table class="table table-sm table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>Estoque Disp/Estoque Min</th>
+        <th>R$ Custo</th>
+        <th>R$ Vda</th>
+        <th>Margem</th>
+        <th>R$ Tot Custo</th>
+        <th>R$r Tot Venda</th>
+        <th>R$ Min Vda</th>
+        <th>R$ Máx Vda</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="relatorio : ${relatorios}">
+        <td th:text="${relatorio.descricao}"></td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

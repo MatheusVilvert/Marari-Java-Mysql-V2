@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Pedidos Emitidos</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Pedidos Emitidos</h1>
+<table class="table table-sm table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>Num Pedido/dt emissão/tipo</th>
+        <th>Cliente</th>
+        <th>Cond Pgto</th>
+        <th>Vr Tot Venda</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente : ${clientes}">
+        <td th:utext="${cliente.nome +'&lt;br /&gt;'+cliente.endereco.rua}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

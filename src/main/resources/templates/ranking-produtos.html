@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Ranking de Produtos</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Ranking de Produtos</h1>
+<table class="table table-sm table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>Produto</th>
+        <th>Estoque</th>
+        <th>Vendas(Qtd e Valor)</th>
+        <th>Qtd Média(por dia/por mês)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente : ${clientes}">
+        <td th:utext="${cliente.nome +'&lt;br /&gt;'+cliente.endereco.rua}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
