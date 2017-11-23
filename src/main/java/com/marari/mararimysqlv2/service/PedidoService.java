@@ -1,10 +1,13 @@
 package com.marari.mararimysqlv2.service;
 
+import com.marari.mararimysqlv2.model.ItemPedido;
 import com.marari.mararimysqlv2.model.Pedido;
-import com.marari.mararimysqlv2.repository.PedidoRepository;
-import com.marari.mararimysqlv2.repository.ProdutoRepository;
+import com.marari.mararimysqlv2.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.util.List;
 
@@ -15,15 +18,35 @@ public class PedidoService {
     private PedidoRepository pedidoRepository;
     @Autowired
     private ProdutoRepository produtoRepository;
+    @Autowired
+    ClienteRepository clienteRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
+    @Autowired
+    FormaPagamentoRepository formaPagamentoRepository;
+    @Autowired
+    ItemPedidoRepository itemPedidoRepository;
 
     public Pedido salvar(Pedido pedido){
+        double tot = 0;
+        DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        pedido.setData(sdf.format(date));
 
-        /*int qtdProduto = pedido.getProdutoList().size();
-        for (int i =0 ; i<qtdProduto; i++){
+        pedido.setCliente(clienteRepository.findOne(pedido.getCliente().getId()));
+        pedido.setFormaPagamento(formaPagamentoRepository.findOne(pedido.getFormaPagamento().getId()));
+        pedido.setUsuario(usuarioRepository.findOne(pedido.getUsuario().getId()));
+        pedidoRepository.save(pedido);
+        for (int i =0; i<pedido.getItemPedidoList().size(); i++){
+            pedido.getItemPedidoList().get(i).setProduto(produtoRepository.findOne(pedido.getItemPedidoList().get(i).getProduto().getId()));
+            itemPedidoRepository.save(pedido.getItemPedidoList().get(i));
+            tot+= pedido.getItemPedidoList().get(i).getProduto().getPrecoVenda() * pedido.getItemPedidoList().get(i).getQtd();
+        }
+        ////
+        pedido.setValorTotal(tot);
 
-        }*/
 
-        return pedidoRepository.save(pedido);
+        return pedido;
     }
 
     public List<Pedido> buscarTodos(){return pedidoRepository.findAll();}

@@ -20,8 +20,8 @@ public class ItemPedidoService {
     ItemPedidoRepository itemPedidoRepository;
 
     public ItemPedido salvar(ItemPedido itemPedido){
-        Produto produto = produtoRepository.findOne(itemPedido.getProduto().getId());
-        itemPedido.setProduto(produto);
+        /*Produto produto = produtoRepository.findOne(itemPedido.getProduto().getId());
+        itemPedido.setProduto(produto);*/
 
         return itemPedidoRepository.save(itemPedido);
     }
