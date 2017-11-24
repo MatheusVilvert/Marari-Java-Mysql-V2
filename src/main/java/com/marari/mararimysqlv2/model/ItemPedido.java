@@ -15,11 +15,11 @@ public class ItemPedido {
     private Integer id;
     @ManyToOne
     private Produto produto;
-    private Integer qtd;
+    private Integer quantidade;
 
-    public ItemPedido(Produto produto,Integer qtd) {
+    public ItemPedido(Produto produto,Integer quantidade) {
         this.produto = produto;
-        this.qtd = qtd;
+        this.quantidade = quantidade;
     }
 
     public ItemPedido() {

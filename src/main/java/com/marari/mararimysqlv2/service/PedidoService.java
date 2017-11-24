@@ -37,13 +37,14 @@ public class PedidoService {
         pedido.setFormaPagamento(formaPagamentoRepository.findOne(pedido.getFormaPagamento().getId()));
         pedido.setUsuario(usuarioRepository.findOne(pedido.getUsuario().getId()));
         pedidoRepository.save(pedido);
-        for (int i =0; i<pedido.getItemPedidoList().size(); i++){
-            pedido.getItemPedidoList().get(i).setProduto(produtoRepository.findOne(pedido.getItemPedidoList().get(i).getProduto().getId()));
-            itemPedidoRepository.save(pedido.getItemPedidoList().get(i));
-            tot+= pedido.getItemPedidoList().get(i).getProduto().getPrecoVenda() * pedido.getItemPedidoList().get(i).getQtd();
+        for (int i =0; i<pedido.getItensPedido().size(); i++){
+            //pedido.getItensPedido().get(i).setProduto(produtoRepository.findOne(pedido.getItensPedido().get(i).getProduto().getId()));
+            itemPedidoRepository.save(pedido.getItensPedido().get(i));
+            tot+= pedido.getItensPedido().get(i).getProduto().getPrecoVenda() * pedido.getItensPedido().get(i).getQuantidade();
         }
         ////
         pedido.setValorTotal(tot);
+        pedidoRepository.save(pedido);
 
 
         return pedido;
