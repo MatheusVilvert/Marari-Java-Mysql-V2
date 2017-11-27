@@ -76,5 +76,32 @@ public class RelatorioController {
         return mv;
     }
 
+    @GetMapping("relatorio/movimentocaixa")
+    public ModelAndView movimentoCaixa(@Param("dataIni")String dataIni,@Param("dataFin")String dataFin){
+        List<objGenerico> objGenericos = new ArrayList<objGenerico>();
+        ModelAndView mv = new ModelAndView("movimento-caixa");
+        List<Caixa> caixas = caixaService.movimentoCaixa(dataIni,dataFin);
+        double entrada =0,saida = 0;
+        for (int i=0;i<caixas.size();i++){
+            objGenerico obj = new objGenerico();
+            obj.setCaixa(caixas.get(i));
+            objGenericos.add(obj);
+            if (caixas.get(i).getTipoDespesa().getDescricao().equals("saida") || caixas.get(i).getTipoDespesa().getDescricao().equals("Saida") || caixas.get(i).getTipoDespesa().getDescricao().equals("saída")){
+                saida+=caixas.get(i).getValor();
+            }else{
+                entrada+=caixas.get(i).getValor();
+            }
+        }
+        objGenerico teste = new objGenerico();
+        DecimalFormat df = new DecimalFormat("#.00");
+        String entradaDecimal = df.format(entrada);
+        String saidaDecimal = df.format(saida);
+        teste.setEntrada("R$ "+entradaDecimal);
+        teste.setSaida("R$ "+saidaDecimal);
+        mv.addObject("teste",teste);
+        mv.addObject("caixas",objGenericos);
+        return mv;
+    }
+
     //
 }

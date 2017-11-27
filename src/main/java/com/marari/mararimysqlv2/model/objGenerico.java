@@ -10,4 +10,6 @@ public class objGenerico {
     private Pedido pedido;
     private String margemPedido;
     private double valorCusto;
+    private String entrada,saida;
+
 }
