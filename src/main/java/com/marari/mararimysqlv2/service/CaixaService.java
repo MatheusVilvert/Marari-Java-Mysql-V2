@@ -5,6 +5,9 @@ import com.marari.mararimysqlv2.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -49,7 +52,9 @@ public class CaixaService {
         }
         Fornecedor fornecedor = fornecedorRepository.findOne(caixa.getFornecedor().getId() );
         caixa.setFornecedor(fornecedor);
-
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        caixa.setData(sdf.format(date));
         return caixaRepository.save(caixa);
 
     }
@@ -57,6 +62,10 @@ public class CaixaService {
     public List<Caixa> fluxoDeCaixa(String dataInicio, String dataFinal){return caixaRepository.fluxoDeCaixa(dataInicio,dataFinal);}
 
     public List<Caixa> buscarTodos(){return caixaRepository.findAll();}
+
+    public List<Caixa> movimentoCaixa(String dataIni, String dataFin){
+        return caixaRepository.movimentoCaixa(dataIni,dataFin);
+    }
 
     public void excluir(Caixa caixa){caixaRepository.delete(caixa);}
 

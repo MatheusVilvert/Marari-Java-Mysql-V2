@@ -11,18 +11,19 @@
 <table class="table table-sm table-striped table-hover table-bordered">
     <thead>
     <tr>
-        <th>Número do pedido/Data de Emissão<br/>Cliente</th>
+        <th>Data de Emissão<br/>Cliente</th>
         <th>Observações</th>
-        <th>Cond Pgto</th>
-        <th>Vr Tot Prod</th>
-        <th>Vr Acresc<br/>Vr Descont</th>
         <th>Vr Tot Venda</th>
         <th>Vr Tot Custo<br/>Margem%</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="relatorio : ${relatorios}">
-        <td th:text="${relatorio.descricao}"></td>
+    <tr th:each="pedido : ${pedidos}">
+        <td th:utext="${pedido.pedido.data +'&lt;br /&gt;'+pedido.pedido.cliente.nome}"></td>
+        <td th:utext="${pedido.pedido.info }"></td>
+        <td th:utext="${pedido.pedido.valorTotal }"></td>
+        <td th:utext="${'R$ '+pedido.valorCusto +'&lt;br /&gt;'+pedido.margemPedido}"></td>
+
 
     </tr>
     </tbody>

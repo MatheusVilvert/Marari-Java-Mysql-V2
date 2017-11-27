@@ -31,6 +31,11 @@ public class CaixaController {
     @GetMapping("caixa/fluxo")
     public List<Caixa> fluxoDeCaixa(@Param("dataInicio")String dataInicio, @Param("dataFinal")String dataFinal){return caixaService.fluxoDeCaixa(dataInicio,dataFinal);}
 
+    @GetMapping("caixa/lista")
+    public List<Caixa> movimentoCaixa(@Param("dataIni")String dataIni,@Param("dataFin")String dataFin){
+        return caixaService.movimentoCaixa(dataIni,dataFin);
+    }
+
     @DeleteMapping("caixa/{id}")
     public void excluir(@PathVariable("id")Integer id){
         Caixa caixa = new Caixa();

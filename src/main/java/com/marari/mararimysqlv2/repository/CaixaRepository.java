@@ -15,4 +15,7 @@ public interface CaixaRepository extends JpaRepository<Caixa,Integer> {
             "(SELECT SUM(valor) " +
             "from Caixa where tipo_despesa_id = 2 AND data BETWEEN :dataInicio AND :dataFinal)AS entrada FROM Caixa ORDER BY tipo_despesa_id")
     List<Caixa> fluxoDeCaixa(@Param("dataInicio") String dataInicio, @Param("dataFinal") String dataFinal);
+
+    @Query("select c from Caixa c where c.data between :dataIni and :dataFin")
+    List<Caixa> movimentoCaixa(@Param("dataIni")String dataIni,@Param("dataFin")String dataFin);
 }

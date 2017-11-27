@@ -21,8 +21,11 @@ public class Cliente {
     private String info;
     private String regiao;
     private boolean status;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn
+    private Vendedor vendedor;
 
-    public Cliente(String nome, String email, Endereco endereco, String cpfCnpj, String rg, String telefone, String info,String regiao,boolean status) {
+    public Cliente(String nome, String email, Endereco endereco, String cpfCnpj, String rg, String telefone, String info,String regiao,boolean status,Vendedor vendedor) {
         this.nome = nome;
         this.email = email;
         this.endereco = endereco;
@@ -32,6 +35,7 @@ public class Cliente {
         this.info = info;
         this.regiao = regiao;
         this.status = status;
+        this.vendedor = vendedor;
     }
 
     public Cliente() {

@@ -60,6 +60,13 @@ public class ProdutoService {
 
     public List<Produto> posicaoEstoque(String parametro){return produtoRepository.posicaoEstoque('%'+parametro+'%');}
 
+    public List<Produto> listaProduto(String nome){
+        if (nome != ""){
+            nome = '%'+nome+'%';
+            return produtoRepository.buscarProduto(nome);
+        }else return produtoRepository.findAll();
+    }
+
     public void excluir(Produto produto){produtoRepository.delete(produto);}
 
     public void editar(Produto produto){
