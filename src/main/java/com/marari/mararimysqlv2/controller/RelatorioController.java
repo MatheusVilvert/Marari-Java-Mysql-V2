@@ -151,5 +151,33 @@ public class RelatorioController {
         return mv;
     }
 
+    @GetMapping("relatorio/rentabilidadeproduto")
+    public ModelAndView rentabilidadeProduto(@Param("nome")String nome){
+        ModelAndView mv = new ModelAndView("rentabilidade-produto");
+        List<objGenerico> objGenericos = new ArrayList<objGenerico>();
+        List<Produto> produtoList = null;
+        double margem =0;
+        if (nome != "") {
+            produtoList= produtoService.listaProduto(nome);
+        }else {
+            produtoList = produtoService.buscarTodos();
+        }
+        for (int i=0;i<produtoList.size();i++){
+            objGenerico obj = new objGenerico();
+            obj.setProduto(produtoList.get(i));
+            objGenericos.add(obj);
+        }
+        for (int i=0;i<objGenericos.size();i++){
+            margem = ((objGenericos.get(i).getProduto().getPrecoVenda() - objGenericos.get(i).getProduto().getPrecoCusto()) / objGenericos.get(i).getProduto().getPrecoVenda()) * 100;
+            DecimalFormat df = new DecimalFormat("#.00");
+            String margemDecimal = df.format(margem);
+            objGenericos.get(i).setMargemProduto(margemDecimal+"%");
+        }
+        mv.addObject("produtos",objGenericos);
+
+        return mv;
+    }
+
+
     //
 }

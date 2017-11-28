@@ -11,20 +11,18 @@
 <table class="table table-sm table-striped table-hover table-bordered">
     <thead>
     <tr>
-        <th>Cliente</th>
-        <th>Num Ped</th>
-        <th>Vendedor</th>
-        <th>Data</th>
-        <th>Quantidade</th>
-        <th>R$ Un</th>
-        <th>R$ Sub Vda</th>
-        <th>R$ Sub Custo</th>
-        <th>Margem%</th>
+        <th>Descrição<br/>Tipo do Produto</th>
+        <th>R$ Custo</th>
+        <th>R$ Vda</th>
+        <th>Margem</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="relatorio : ${relatorios}">
-        <td th:text="${relatorio.descricao}"></td>
+    <tr th:each="produto : ${produtos}">
+        <td th:utext="${produto.produto.descricao+'&lt;br /&gt;'+produto.produto.tipoProduto.descricao}"></td>
+        <td th:utext="${produto.produto.precoCusto}"></td>
+        <td th:utext="${produto.produto.precoVenda}"></td>
+        <td th:utext="${produto.margemProduto}"></td>
 
     </tr>
     </tbody>

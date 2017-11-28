@@ -9,6 +9,7 @@ public class objGenerico {
     private Caixa caixa;
     private Pedido pedido;
     private String margemPedido;
+    private String margemProduto;
     private double valorCusto;
     private String entrada,saida;
     private String valorTotal;
