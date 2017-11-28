@@ -16,6 +16,9 @@ public class VendedorController {
     @PostMapping("vendedor/salvar")
     public Vendedor cadastrar(@RequestBody Vendedor vendedor){return vendedorService.salvar(vendedor);}
 
+    @PutMapping("vendedor/alterar")
+    public void editar(@RequestBody Vendedor vendedor){vendedorService.salvar(vendedor);}
+
     @GetMapping("vendedor/todos")
     public List<Vendedor> buscarTodos(){return vendedorService.buscarTodos();}
 

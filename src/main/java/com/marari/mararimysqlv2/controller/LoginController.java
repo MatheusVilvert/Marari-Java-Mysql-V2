@@ -11,7 +11,7 @@ public class LoginController {
     @Autowired
     UsuarioService usuarioService;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public Usuario autenticar (@RequestParam("email")String email, @RequestParam("senha")String senha){
 
             Usuario usuario = usuarioService.buscarPorEmailSenha(email,senha);

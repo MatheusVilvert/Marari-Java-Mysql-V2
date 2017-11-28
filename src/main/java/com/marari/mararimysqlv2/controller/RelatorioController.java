@@ -27,6 +27,8 @@ public class RelatorioController {
     private CaixaService caixaService;
     @Autowired
     private PedidoService pedidoService;
+    @Autowired
+    private FornecedorService fornecedorService;
 
     @GetMapping("teste")
     public ModelAndView teste(){
@@ -175,6 +177,14 @@ public class RelatorioController {
         }
         mv.addObject("produtos",objGenericos);
 
+        return mv;
+    }
+
+    @GetMapping("relatorio/listafornecedor")
+    public ModelAndView listaFornecedor(@Param("nome")String nome){
+        ModelAndView mv = new ModelAndView("lista-fornecedor");
+        List<Fornecedor> fornecedorList = fornecedorService.buscaPorNome(nome);
+        mv.addObject("fornecedores",fornecedorList);
         return mv;
     }
 

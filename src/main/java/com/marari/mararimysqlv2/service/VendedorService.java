@@ -2,6 +2,7 @@ package com.marari.mararimysqlv2.service;
 
 import com.marari.mararimysqlv2.model.Vendedor;
 import com.marari.mararimysqlv2.repository.EnderecoRepository;
+import com.marari.mararimysqlv2.repository.PerfilRepository;
 import com.marari.mararimysqlv2.repository.VendedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,12 @@ import java.util.List;
 public class VendedorService {
     @Autowired
     private VendedorRepository vendedorRepository;
+    @Autowired
+    private PerfilRepository perfilRepository;
 
 
     public Vendedor salvar(Vendedor vendedor){
+        vendedor.setPerfil(perfilRepository.findOne(2));
         return vendedorRepository.save(vendedor);
     }
 

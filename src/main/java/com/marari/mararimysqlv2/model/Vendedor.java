@@ -14,11 +14,13 @@ public class Vendedor extends Usuario{
     private Integer id;
     private Double meta;
     private String regiao;
+    private String telefone;
 
-    public Vendedor(Integer id, String nome, String email, String senha, Perfil perfil, Double meta, String regiao) {
+    public Vendedor(Integer id, String nome, String email, String senha, Perfil perfil, Double meta, String regiao,String telefone) {
         super(id, nome, email, senha, perfil);
         this.meta = meta;
         this.regiao = regiao;
+        this.telefone = telefone;
     }
 
     public Vendedor(){

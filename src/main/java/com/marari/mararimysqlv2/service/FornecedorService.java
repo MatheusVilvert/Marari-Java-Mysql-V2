@@ -27,6 +27,14 @@ public class FornecedorService {
         return fornecedorRepository.save(fornecedor);
     }
 
+    public List<Fornecedor> buscaPorNome(String nome ){
+        if (nome != ""){
+            return fornecedorRepository.buscaPorNome(nome);
+        }else {
+            return fornecedorRepository.findAll();
+        }
+    }
+
     public List<Fornecedor> buscarTodos(){return fornecedorRepository.findAll();}
 
     public List<Fornecedor> listaPorParametro(String parametro){return fornecedorRepository.listaPorParametro('%'+parametro+'%');}
