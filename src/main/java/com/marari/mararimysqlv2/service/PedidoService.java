@@ -75,6 +75,18 @@ public class PedidoService {
         return pedidoRepository.vendasValorPeriodo(dataIni,dataFin);
     }
 
+    public List<Pedido> buscaParametro(String dataIni, String dataFin,String nomeCliente,String nomeVendedor){
+        return pedidoRepository.buscaParametro(dataIni,dataFin,nomeVendedor,nomeCliente);
+    }
+
+    public List<Pedido> buscaPorCliente(String dataIni, String dataFin,String nomeCliente){
+        return pedidoRepository.buscaPorCliente(dataIni,dataFin,nomeCliente);
+    }
+
+    public List<Pedido> buscaPorVendedor(String dataIni, String dataFin,String nomeVendedor){
+        return pedidoRepository.buscaPorVendedor(dataIni,dataFin,nomeVendedor);
+    }
+
     public List<Pedido> teste(){return pedidoRepository.teste();}
 
     public List<Pedido> listaPedido(String dataIni, String dataFin,String nomeCliente,String nomeVendedor){

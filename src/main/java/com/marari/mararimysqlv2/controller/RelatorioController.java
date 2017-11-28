@@ -8,10 +8,13 @@ import com.marari.mararimysqlv2.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +52,39 @@ public class RelatorioController {
         }else if (nome.equals("") && nomeVendedor != ""){
             mv.addObject("clientes",clienteService.buscarPorNomeVendedor(nomeVendedor));
         }
+        return mv;
+    }
+
+    @GetMapping("relatorio/listapedido")
+    public ModelAndView listaPedidos(@Param("dataIni")String dataIni, @Param("dataFin") String dataFin, @Param("nomeCliente")String nomeCliente,@Param("nomeVendedor")String nomeVendedor){
+        ModelAndView mv = new ModelAndView("pedidos-emitidos");
+        List<objGenerico> objGenericos = new ArrayList<objGenerico>();
+        List<Pedido>  pedidos = null;
+
+
+        if (dataIni != "" && dataFin != "" && nomeCliente != "" && nomeVendedor != "" ){
+            nomeCliente = '%'+nomeCliente+'%';
+            nomeVendedor = '%'+nomeVendedor+'%';
+            pedidos= pedidoService.buscaParametro(dataIni,dataFin,nomeVendedor,nomeCliente);
+        }else if (dataIni != "" && dataFin != "" && nomeCliente.equals("") && nomeVendedor.equals("")){
+            pedidos= pedidoService.buscaPorData(dataIni,dataFin);
+        }else if (dataIni != "" && dataFin != "" && nomeCliente!= ""){
+            nomeCliente = '%'+nomeCliente+'%';
+            pedidos= pedidoService.buscaPorCliente(dataIni,dataFin,nomeCliente);
+        }else if (dataIni != "" && dataFin != "" && nomeVendedor!= ""){
+            nomeVendedor = '%'+nomeVendedor+'%';
+            pedidos=pedidoService.buscaPorVendedor(dataIni,dataFin,nomeVendedor);
+        }
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        for (int i =0; i<pedidos.size(); i++){
+            String valorDecimal = df.format(pedidos.get(i).getValorTotal());
+            objGenerico obj = new objGenerico();
+            obj.setPedido(pedidos.get(i));
+            obj.setValorTotal("R$ "+valorDecimal);
+            objGenericos.add(obj);
+        }
+        mv.addObject("pedidos",objGenericos);
         return mv;
     }
 

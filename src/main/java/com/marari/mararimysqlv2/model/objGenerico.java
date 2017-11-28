@@ -11,5 +11,7 @@ public class objGenerico {
     private String margemPedido;
     private double valorCusto;
     private String entrada,saida;
+    private String valorTotal;
+
 
 }
