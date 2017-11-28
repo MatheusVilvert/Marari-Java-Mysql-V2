@@ -1,9 +1,6 @@
 package com.marari.mararimysqlv2.controller;
 
-import com.marari.mararimysqlv2.model.Caixa;
-import com.marari.mararimysqlv2.model.Cliente;
-import com.marari.mararimysqlv2.model.Pedido;
-import com.marari.mararimysqlv2.model.objGenerico;
+import com.marari.mararimysqlv2.model.*;
 import com.marari.mararimysqlv2.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -136,6 +133,21 @@ public class RelatorioController {
         teste.setSaida("R$ "+saidaDecimal);
         mv.addObject("teste",teste);
         mv.addObject("caixas",objGenericos);
+        return mv;
+    }
+
+    @GetMapping("relatorio/posicaoestoque")
+    public ModelAndView posicaoEstoque(@Param("nome")String nome){
+        ModelAndView mv = new ModelAndView("posicao-estoque");
+        List<Produto> produtoList = null;
+        if (nome != "") {
+            produtoList= produtoService.listaProduto(nome);
+        }else {
+            produtoList = produtoService.buscarTodos();
+        }
+
+        mv.addObject("produtos",produtoList);
+
         return mv;
     }
 
