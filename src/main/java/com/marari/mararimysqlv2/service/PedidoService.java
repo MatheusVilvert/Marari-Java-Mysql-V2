@@ -2,6 +2,7 @@ package com.marari.mararimysqlv2.service;
 
 import com.marari.mararimysqlv2.model.ItemPedido;
 import com.marari.mararimysqlv2.model.Pedido;
+import com.marari.mararimysqlv2.model.Produto;
 import com.marari.mararimysqlv2.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,9 @@ public class PedidoService {
         pedidoRepository.save(pedido);
         for (int i =0; i<pedido.getItensPedido().size(); i++){
             pedido.getItensPedido().get(i).setProduto(produtoRepository.findOne(pedido.getItensPedido().get(i).getProduto().getId()));
+            Produto produto = new Produto();
+            produto = produtoRepository.findOne(pedido.getItensPedido().get(i).getProduto().getId());
+            produto.setQtdEstoque(produto.getQtdEstoque() - pedido.getItensPedido().get(i).getQuantidade());
             itemPedidoRepository.save(pedido.getItensPedido().get(i));
             tot+= pedido.getItensPedido().get(i).getProduto().getPrecoVenda() * pedido.getItensPedido().get(i).getQuantidade();
         }
@@ -76,7 +80,7 @@ public class PedidoService {
     }
 
     public List<Pedido> buscaParametro(String dataIni, String dataFin,String nomeCliente,String nomeVendedor){
-        return pedidoRepository.buscaParametro(dataIni,dataFin,nomeVendedor,nomeCliente);
+        return pedidoRepository.buscaParametro(dataIni,dataFin,nomeCliente,nomeVendedor);
     }
 
     public List<Pedido> buscaPorCliente(String dataIni, String dataFin,String nomeCliente){

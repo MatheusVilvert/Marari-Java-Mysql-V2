@@ -50,7 +50,12 @@ public class RelatorioController {
             mv.addObject("clientes",clienteService.buscarPorNome(nome));
         }else if (nome.equals("") && nomeVendedor != ""){
             mv.addObject("clientes",clienteService.buscarPorNomeVendedor(nomeVendedor));
+        } else if (nome != "" && nomeVendedor != "") {
+            nome = '%'+nome+'%';
+            nomeVendedor = '%'+nomeVendedor+'%';
+            mv.addObject("clientes",clienteService.buscarPorParametro(nome,nomeVendedor));
         }
+
         return mv;
     }
 
@@ -91,7 +96,7 @@ public class RelatorioController {
     public ModelAndView RentabilidadePedido(@Param("dataIni")String dataIni,@Param("dataFin")String dataFin){
         List<objGenerico> objGenericos = new ArrayList<objGenerico>();
         ModelAndView mv = new ModelAndView("rentabilidade-pedido");
-        List<Pedido> pedidos = pedidoService.buscaPorData(dataIni,dataIni);
+        List<Pedido> pedidos = pedidoService.buscaPorData(dataIni,dataFin);
         double valorCusto =0;
         double margem =0;
         for (int i =0; i<pedidos.size();i++){

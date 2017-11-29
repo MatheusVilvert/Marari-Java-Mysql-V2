@@ -23,6 +23,12 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
    @Query("SELECT c FROM Cliente c WHERE c.vendedor.nome LIKE lower(:nomeVendedor)" )
    List<Cliente>buscaPorVendedor(@Param("nomeVendedor")String nomeVendedor);
 
+   @Query("select c from Cliente c where " +
+           "  (c.nome like lower(:nome) " +
+           "or c.nome is null) and (c.vendedor.nome like lower(:nomeVendedor) or c.vendedor.nome is null)")
+   List<Cliente> buscaParametro(@Param("nome")String nome,@Param("nomeVendedor")String nomeVendedor);
+
+
    List<Cliente> findByVendedorNome(String nome);
    List<Cliente> findByNome(String nome);
    List<Cliente> findByNomeAndVendedorNome(String nome,String nomeVendedor);

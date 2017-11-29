@@ -26,7 +26,7 @@ public class Produto {
     private Double peso;
     private Double largura;
     private Double profundidade;
-    private Double medidaProduto;
+    private String medidaProduto;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn
     private TipoProduto tipoProduto;
@@ -35,7 +35,7 @@ public class Produto {
     private Usuario usuario;
     private String validade;
 
-    public Produto(String descricao, String codBarras, Fornecedor fornecedor, Double precoCusto, Double precoVenda, Double precoMinVenda, Double precoMaxVenda, Double comissaoVenda, Integer qtdEstoque, Integer qtdMinEstoque, Double altura, Double peso, Double largura, Double profundidade, Double medidaProduto, TipoProduto tipoProduto, Usuario usuario, String validade) {
+    public Produto(String descricao, String codBarras, Fornecedor fornecedor, Double precoCusto, Double precoVenda, Double precoMinVenda, Double precoMaxVenda, Double comissaoVenda, Integer qtdEstoque, Integer qtdMinEstoque, Double altura, Double peso, Double largura, Double profundidade, String medidaProduto, TipoProduto tipoProduto, Usuario usuario, String validade) {
         this.descricao = descricao;
         this.codBarras = codBarras;
         this.fornecedor = fornecedor;
